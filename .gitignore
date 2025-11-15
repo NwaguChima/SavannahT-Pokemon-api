@@ -1,0 +1,28 @@
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Node dependencies
+/frontend/node_modules
+/backend/node_modules
+/backend/.eslintignore
+
+# Build output
+/frontend/dist
+/frontend/build
+/backend/dist
+
+# Logs
+**/*.log
+
+# Environment files
+/frontend/.env
+/backend/.env
+
