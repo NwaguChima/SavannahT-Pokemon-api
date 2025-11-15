@@ -11,6 +11,7 @@ import Button from '@/shared/components/button/Button';
 import styles from './PokemonDetails.module.scss';
 import { usePokemonDetail } from '../../hooks';
 import Modal from '@/shared/components/modal/Modal';
+import { ArrowRightIcon, StarIcon } from '@/assets/icons';
 
 interface PokemonDetailProps {
   pokemon: Pokemon;
@@ -31,6 +32,8 @@ const PokemonDetail = ({
   const { evolutions, isLoading: isLoadingEvolution } = usePokemonDetail(
     pokemon.id
   );
+
+  console.log('isLoadingEvolution', { isLoadingEvolution });
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="lg">
@@ -87,33 +90,40 @@ const PokemonDetail = ({
           </div>
         </div>
 
-        {evolutions.length > 0 && (
-          <div className={styles.detail__section}>
-            <h3 className={styles.detail__title}>Evolution Chain</h3>
-            {isLoadingEvolution ? (
-              <Loader size="sm" />
-            ) : (
+        {isLoadingEvolution ? (
+          <Loader size="sm" />
+        ) : (
+          evolutions.length > 0 && (
+            <div className={styles.detail__section}>
+              <h3 className={styles.detail__title}>Evolution Chain</h3>
               <div className={styles.detail__evolutions}>
                 {evolutions.map((evo, index) => (
                   <span key={index} className={styles.detail__evolution}>
-                    {formatPokemonName(evo)}
+                    <p>{formatPokemonName(evo)}</p>
                     {index < evolutions.length - 1 && (
-                      <span className={styles.detail__arrow}>→</span>
+                      <span className={styles.detail__arrow}>
+                        <ArrowRightIcon />
+                      </span>
                     )}
                   </span>
                 ))}
               </div>
-            )}
-          </div>
+            </div>
+          )
         )}
 
         <div className={styles.detail__actions}>
           <Button
-            variant={isFavorite ? 'danger' : 'primary'}
+            variant={isFavorite ? 'danger' : 'outline'}
             fullWidth
             onClick={() => onToggleFavorite(pokemon)}
           >
-            {isFavorite ? '❤️ Remove from Favorites' : '🤍 Add to Favorites'}
+            <StarIcon
+              fill={isFavorite ? '#ffdc64' : '#f1f0f0'}
+              height="23"
+              width="23"
+            />
+            {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
           </Button>
         </div>
       </div>

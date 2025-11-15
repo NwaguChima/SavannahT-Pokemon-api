@@ -22,20 +22,20 @@
     width: 100%;
     max-height: 90vh;
     overflow-y: auto;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.3);
     animation: scaleIn $transition-normal;
 
     // Size variants
     &--sm {
-      max-width: 400px;
+      max-width: 40rem;
     }
 
     &--md {
-      max-width: 600px;
+      max-width: 60rem;
     }
 
     &--lg {
-      max-width: 800px;
+      max-width: 80rem;
     }
 
     // Custom scrollbar for modal content
@@ -61,12 +61,12 @@
     position: sticky;
     top: $spacing-md;
     left: 100%;
-    margin-left: -50px;
+    margin-left: -5rem;
     background-color: rgba(0, 0, 0, 0.1);
+    margin-right: $spacing-sm;
     border: none;
-    border-radius: $radius-full;
-    width: 36px;
-    height: 36px;
+    width: 3.6rem;
+    height: 3.6rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -80,6 +80,12 @@
       background-color: rgba(0, 0, 0, 0.2);
       transform: rotate(90deg);
     }
+
+    border-radius: $radius-lg;
+    -webkit-border-radius: $radius-lg;
+    -moz-border-radius: $radius-lg;
+    -ms-border-radius: $radius-lg;
+    -o-border-radius: $radius-lg;
   }
 }
 

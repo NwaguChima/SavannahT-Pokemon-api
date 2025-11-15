@@ -3,6 +3,7 @@ import Input from '@/shared/components/input/Input';
 import Button from '@/shared/components/button/Button';
 import styles from './SearchBar.module.scss';
 import { usePokemonSearch } from '../../hooks';
+import { SearchIcon } from '@/assets/icons';
 
 interface SearchBarProps {
   onPokemonFound: (pokemon: Pokemon) => void;
@@ -19,7 +20,7 @@ const SearchBar = ({ onPokemonFound }: SearchBarProps) => {
         placeholder="Search Pokémon by name or ID..."
         value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
-        icon={<span>🔍</span>}
+        icon={<SearchIcon />}
       />
       <Button
         type="submit"

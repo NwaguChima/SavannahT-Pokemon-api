@@ -17,7 +17,7 @@ const Loader = ({ size = 'md', text }: LoaderProps) => {
           <div className={styles.pokeball__button}></div>
         </div>
       </div>
-      {text && <p className={styles.loader__text}>{text}</p>}
+      {text && <h3 className={styles.loader__text}>{text}</h3>}
     </div>
   );
 };

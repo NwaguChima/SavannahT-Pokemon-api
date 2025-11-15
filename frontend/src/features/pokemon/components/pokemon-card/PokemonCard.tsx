@@ -5,6 +5,7 @@ import {
 } from '@shared/utils/pokemon-helpers';
 import styles from './PokemonCard.module.scss';
 import type { Pokemon } from '@/types';
+import { StarIcon } from '@/assets/icons';
 
 interface PokemonCardProps {
   pokemon: Pokemon;
@@ -28,18 +29,16 @@ const PokemonCard = ({
 
   return (
     <div className={styles.card} onClick={() => onClick(pokemon)}>
-      {isFavorite && (
-        <div className={styles.card__badge}>
-          <span>⭐</span>
-        </div>
-      )}
-
       <button
         className={styles.card__favorite}
         onClick={handleFavoriteClick}
         aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
       >
-        {isFavorite ? '❤️' : '🤍'}
+        <StarIcon
+          fill={isFavorite ? '#ffdc64' : '#f1f0f0'}
+          height="23"
+          width="23"
+        />
       </button>
 
       <div className={styles.card__image}>

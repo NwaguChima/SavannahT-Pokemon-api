@@ -7,8 +7,8 @@
     color.adjust($secondary-color, $lightness: 15%)
   );
   color: white;
-  padding: $spacing-xl $spacing-md;
-  box-shadow: 0 4px 12px $shadow-medium;
+  padding: $spacing-md $spacing-sm;
+  box-shadow: 0 0.4rem 1.2rem $shadow-medium;
   position: sticky;
   top: 0;
   z-index: $z-index-header;

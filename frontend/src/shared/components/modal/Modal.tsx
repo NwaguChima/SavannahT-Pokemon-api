@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import styles from './Modal.module.scss';
 import Button from '../button/Button';
+import { CloseIcon } from '@/assets/icons';
 
 interface ModalProps {
   isOpen: boolean;
@@ -20,9 +21,9 @@ const Modal = ({ isOpen, onClose, children, size = 'md' }: ModalProps) => {
         }`}
         onClick={(e) => e.stopPropagation()}
       >
-        <Button className={styles.modal__close} onClick={onClose}>
-          ✕
-        </Button>
+        <button className={styles.modal__close} onClick={onClose}>
+          <CloseIcon />
+        </button>
         {children}
       </div>
     </div>

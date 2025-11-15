@@ -12,23 +12,24 @@
     animation: bounce 1s ease-in-out infinite;
 
     &--sm {
-      width: 30px;
-      height: 30px;
+      width: 3rem;
+      height: 3rem;
     }
 
     &--md {
-      width: 50px;
-      height: 50px;
+      width: 5rem;
+      height: 5rem;
     }
 
     &--lg {
-      width: 80px;
-      height: 80px;
+      width: 8rem;
+      height: 8rem;
     }
   }
 
   &__text {
-    font-size: $font-md;
+    font-size: $font-lg;
+    font-weight: 700;
     color: $text-secondary;
     animation: pulse 1.5s ease-in-out infinite;
   }
@@ -92,7 +93,11 @@
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-1rem);
+    -webkit-transform: translateY(-1rem);
+    -moz-transform: translateY(-1rem);
+    -ms-transform: translateY(-1rem);
+    -o-transform: translateY(-1rem);
   }
 }
 

@@ -9,6 +9,7 @@
   font-weight: $font-medium;
   border: none;
   border-radius: $radius-md;
+
   cursor: pointer;
   transition: all $transition-fast;
   font-size: $font-md;
@@ -94,8 +95,8 @@
 
   &__spinner {
     position: absolute;
-    width: 20px;
-    height: 20px;
+    width: 2rem;
+    height: 2rem;
     border: 2px solid rgba(255, 255, 255, 0.3);
     border-top-color: white;
     border-radius: 50%;

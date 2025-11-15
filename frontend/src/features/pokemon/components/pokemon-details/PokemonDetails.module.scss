@@ -17,8 +17,8 @@
 
   &__image {
     flex-shrink: 0;
-    width: 200px;
-    height: 200px;
+    width: 20rem;
+    height: 20rem;
     background: linear-gradient(
       135deg,
       $bg-secondary 0%,
@@ -99,7 +99,7 @@
       $bg-secondary 0%,
       lighten($bg-secondary, 5%) 100%
     );
-    padding: $spacing-lg;
+    padding: $spacing-sm $spacing-lg;
     border-radius: $radius-lg;
     text-align: center;
     border: 1px solid $border-color;
@@ -143,7 +143,7 @@
     &::before {
       content: '';
       width: 4px;
-      height: 24px;
+      height: 2.4rem;
       background-color: $primary-color;
       border-radius: $radius-sm;
     }
@@ -175,13 +175,17 @@
     align-items: center;
     gap: $spacing-md;
     flex-wrap: wrap;
-    padding: $spacing-lg;
+    padding: $spacing-md;
     background-color: $bg-secondary;
     border-radius: $radius-lg;
     border: 1px solid $border-color;
   }
 
   &__evolution {
+    display: flex;
+    justify-items: center;
+    gap: $spacing-xs;
+    height: 2.8rem;
     background-color: white;
     padding: $spacing-sm $spacing-md;
     border-radius: $radius-md;
@@ -193,13 +197,18 @@
     &:hover {
       transform: scale(1.05);
     }
+
+    p {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
   &__arrow {
-    margin: 0 $spacing-sm;
-    font-size: $font-lg;
-    color: $text-secondary;
-    font-weight: $font-bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   &__actions {

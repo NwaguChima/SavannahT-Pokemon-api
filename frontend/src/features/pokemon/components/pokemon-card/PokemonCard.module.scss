@@ -1,5 +1,3 @@
-@import '@/shared/styles/variables.scss';
-
 .card {
   position: relative;
   background-color: $bg-card;
@@ -12,23 +10,7 @@
 
   &:hover {
     transform: translateY(-8px);
-    box-shadow: 0 8px 24px $shadow-medium;
-  }
-
-  &__badge {
-    position: absolute;
-    top: $spacing-sm;
-    left: $spacing-sm;
-    background-color: $primary-color;
-    border-radius: $radius-full;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: $font-lg;
-    animation: scaleIn $transition-normal;
-    z-index: 2;
+    box-shadow: 0 8px 2.4rem $shadow-medium;
   }
 
   &__favorite {
@@ -38,8 +20,8 @@
     background-color: rgba(255, 255, 255, 0.9);
     border: none;
     border-radius: $radius-full;
-    width: 36px;
-    height: 36px;
+    width: 3.6rem;
+    height: 3.6rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -60,7 +42,7 @@
 
   &__image {
     width: 100%;
-    height: 150px;
+    height: 15rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -79,8 +61,8 @@
   }
 
   &__placeholder {
-    width: 80px;
-    height: 80px;
+    width: 8rem;
+    height: 8rem;
     background-color: $bg-secondary;
     border-radius: $radius-full;
     display: flex;

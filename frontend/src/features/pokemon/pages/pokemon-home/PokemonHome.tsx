@@ -1,23 +1,21 @@
 import { useState } from 'react';
-
 import { useAppDispatch, useAppSelector } from '@lib/store/hooks';
 import { setSelectedPokemon, setFilter } from '@lib/store/slices/pokemonSlice';
+import ConfirmationModal from '@/shared/components/confirmation-modal/ConfirmationModal';
 import { type Pokemon } from '@/types';
 import Header from '../../components/header/Header';
 import SearchBar from '../../components/search-bar/SearchBar';
 import FilterBar from '../../components/filter-bar/FilterBar';
 import PokemonList from '../../components/pokemon-list/PokemonList';
 import PokemonDetail from '../../components/pokemon-details/PokemonDetails';
-import styles from './PokemonHome.module.scss';
 import { useFavorites } from '../../hooks';
-import ConfirmationModal from '@/shared/components/confirmation-modal/ConfirmationModal';
+import styles from './PokemonHome.module.scss';
 
 const PokemonHomePage = () => {
   const dispatch = useAppDispatch();
   const { selectedPokemon, filter, favoriteIds } = useAppSelector(
     (state) => state.pokemon
   );
-
   const [showDetail, setShowDetail] = useState(false);
 
   const {
@@ -53,18 +51,18 @@ const PokemonHomePage = () => {
       <Header />
 
       <main className={styles.page__content}>
-        <div className={styles.page__search}>
+        <section className={styles.page__search}>
           <SearchBar onPokemonFound={handleSelectPokemon} />
-        </div>
+        </section>
 
-        <div className={styles.page__filter}>
+        <section className={styles.page__filter}>
           <FilterBar
             currentFilter={filter}
             onFilterChange={handleFilterChange}
             favoriteCount={favoriteIds.length}
             onClearFavorites={openClearConfirmation}
           />
-        </div>
+        </section>
 
         <PokemonList
           favoriteIds={favoriteIds}

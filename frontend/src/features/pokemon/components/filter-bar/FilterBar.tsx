@@ -1,6 +1,7 @@
-import type { PokemonFilter } from '@/types';
 import Button from '@/shared/components/button/Button';
 import styles from './FilterBar.module.scss';
+import type { PokemonFilter } from '@/types';
+import { StarIcon } from '@/assets/icons';
 
 interface FilterBarProps {
   currentFilter: PokemonFilter;
@@ -32,12 +33,12 @@ const FilterBar = ({
           }`}
           onClick={() => onFilterChange('favorites')}
         >
-          ⭐ Favorites ({favoriteCount})
+          <StarIcon /> Favorites <span>({favoriteCount})</span>
         </button>
       </div>
 
       {favoriteCount > 0 && (
-        <Button variant="outline" size="sm" onClick={onClearFavorites}>
+        <Button variant="outline" size="md" onClick={onClearFavorites}>
           Clear All Favorites
         </Button>
       )}

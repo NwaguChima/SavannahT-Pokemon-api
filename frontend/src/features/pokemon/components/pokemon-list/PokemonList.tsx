@@ -1,8 +1,8 @@
-import { POKEMON_CONSTANTS } from '@shared/constants';
-import { type Pokemon } from '@/types';
 import Loader from '@/shared/components/loader/Loader';
 import PokemonCard from '../pokemon-card/PokemonCard';
 import styles from './PokemonList.module.scss';
+import { POKEMON_CONSTANTS } from '@shared/constants';
+import { type Pokemon } from '@/types';
 import { useInfiniteScroll, usePokemonList } from '../../hooks';
 
 interface PokemonListProps {
@@ -66,7 +66,7 @@ const PokemonList = ({
   }
 
   return (
-    <div className={styles.list}>
+    <section className={styles.list}>
       <div className={styles.list__grid}>
         {displayedPokemon.map((pokemon) => (
           <PokemonCard
@@ -90,7 +90,7 @@ const PokemonList = ({
           )}
         </div>
       )}
-    </div>
+    </section>
   );
 };
 export default PokemonList;
