@@ -33,7 +33,7 @@ const FilterBar = ({
           }`}
           onClick={() => onFilterChange('favorites')}
         >
-          <StarIcon /> Favorites <span>({favoriteCount})</span>
+          <StarIcon /> <span>Favorites ({favoriteCount})</span>
         </button>
       </div>
 

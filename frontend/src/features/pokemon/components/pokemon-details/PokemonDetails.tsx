@@ -33,8 +33,6 @@ const PokemonDetail = ({
     pokemon.id
   );
 
-  console.log('isLoadingEvolution', { isLoadingEvolution });
-
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="lg">
       <div className={styles.detail}>
@@ -91,7 +89,7 @@ const PokemonDetail = ({
         </div>
 
         {isLoadingEvolution ? (
-          <Loader size="sm" />
+          <Loader size="sm" variant="pulse" />
         ) : (
           evolutions.length > 0 && (
             <div className={styles.detail__section}>

@@ -42,7 +42,7 @@ const PokemonList = ({
   });
 
   if (isLoading) {
-    return <Loader size="lg" text="Loading Pokémon..." />;
+    return <Loader size="lg" text="Loading Pokémon..." variant="pokeball" />;
   }
 
   if (error) {

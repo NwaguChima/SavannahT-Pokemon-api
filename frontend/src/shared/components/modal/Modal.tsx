@@ -1,7 +1,7 @@
-import type { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import styles from './Modal.module.scss';
-import Button from '../button/Button';
 import { CloseIcon } from '@/assets/icons';
+import { usePreventDocumentScroll } from '@/shared/hooks/usePreventDocumentScroll';
 
 interface ModalProps {
   isOpen: boolean;
@@ -11,6 +11,8 @@ interface ModalProps {
 }
 
 const Modal = ({ isOpen, onClose, children, size = 'md' }: ModalProps) => {
+  usePreventDocumentScroll({ isOpen });
+
   if (!isOpen) return null;
 
   return (

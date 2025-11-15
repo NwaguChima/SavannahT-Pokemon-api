@@ -1,3 +1,4 @@
+import { usePreventDocumentScroll } from '@/shared/hooks/usePreventDocumentScroll';
 import Button from '../button/Button';
 import styles from './ConfirmationModal.module.scss';
 
@@ -22,6 +23,8 @@ const ConfirmationModal = ({
   onCancel,
   isLoading = false,
 }: ConfirmationModalProps) => {
+  usePreventDocumentScroll({ isOpen });
+
   if (!isOpen) return null;
 
   return (

@@ -1,5 +1,3 @@
-@import '@/shared/styles/variables.scss';
-
 .loader {
   display: flex;
   flex-direction: column;
@@ -8,8 +6,9 @@
   gap: $spacing-md;
   padding: $spacing-xl;
 
+  // Pokeball Spinner
   &__spinner {
-    animation: bounce 1s ease-in-out infinite;
+    animation: float 2s ease-in-out infinite;
 
     &--sm {
       width: 3rem;
@@ -17,68 +16,174 @@
     }
 
     &--md {
-      width: 5rem;
-      height: 5rem;
+      width: 6rem;
+      height: 6rem;
     }
 
     &--lg {
-      width: 8rem;
-      height: 8rem;
+      width: 9rem;
+      height: 9rem;
+    }
+  }
+
+  // Pikachu Lightning
+  &__pikachu {
+    animation: bounce 0.6s ease-in-out infinite;
+
+    &--sm {
+      font-size: 3rem;
+    }
+
+    &--md {
+      font-size: 6rem;
+    }
+
+    &--lg {
+      font-size: 9rem;
+    }
+  }
+
+  // Pulse Rings
+  &__pulse {
+    position: relative;
+
+    &--sm {
+      width: 3rem;
+      height: 3rem;
+    }
+
+    &--md {
+      width: 6rem;
+      height: 6rem;
+    }
+
+    &--lg {
+      width: 9rem;
+      height: 9rem;
     }
   }
 
   &__text {
-    font-size: $font-lg;
-    font-weight: 700;
+    font-size: $font-md;
     color: $text-secondary;
+    font-weight: $font-medium;
     animation: pulse 1.5s ease-in-out infinite;
   }
 }
 
+// Pokeball Design
 .pokeball {
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    to bottom,
-    $accent-color 0%,
-    $accent-color 45%,
-    $text-primary 45%,
-    $text-primary 55%,
-    white 55%,
-    white 100%
-  );
-  border-radius: 50%;
-  border: 3px solid $text-primary;
   position: relative;
-  animation: spin 1.5s linear infinite;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  animation: spinPokeball 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+
+  &__top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(135deg, #ff1744 0%, #d50000 100%);
+  }
+
+  &__bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: $text-primary;
+    transform: translateY(-50%);
+    z-index: 2;
+  }
 
   &__button {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 25%;
-    height: 25%;
-    background-color: white;
+    width: 30%;
+    height: 30%;
+    background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
     border: 3px solid $text-primary;
     border-radius: 50%;
+    z-index: 3;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    animation: buttonPulse 1.2s ease-in-out infinite;
+  }
 
-    &::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 40%;
-      height: 40%;
-      background-color: white;
-      border: 2px solid $text-primary;
-      border-radius: 50%;
+  &__inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40%;
+    height: 40%;
+    background-color: white;
+    border: 2px solid lighten($text-primary, 30%);
+    border-radius: 50%;
+  }
+}
+
+// Pikachu Lightning
+.pikachu {
+  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.6));
+  animation: zap 0.6s ease-in-out infinite;
+}
+
+// Pulse Rings
+.pulse {
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  &__ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border: 3px solid $primary-color;
+    border-radius: 50%;
+    animation: ripple 1.5s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+
+    &:nth-child(2) {
+      animation-delay: 0.5s;
+    }
+
+    &:nth-child(3) {
+      animation-delay: 1s;
     }
   }
 }
 
-@keyframes spin {
+// Animations
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes spinPokeball {
   0% {
     transform: rotate(0deg);
   }
@@ -87,17 +192,35 @@
   }
 }
 
+@keyframes buttonPulse {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
 @keyframes bounce {
   0%,
   100% {
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
   50% {
-    transform: translateY(-1rem);
-    -webkit-transform: translateY(-1rem);
-    -moz-transform: translateY(-1rem);
-    -ms-transform: translateY(-1rem);
-    -o-transform: translateY(-1rem);
+    transform: translateY(-20px) scale(1.1);
+  }
+}
+
+@keyframes zap {
+  0%,
+  100% {
+    transform: rotate(-15deg);
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.6));
+  }
+  50% {
+    transform: rotate(15deg);
+    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.9));
   }
 }
 
@@ -108,5 +231,16 @@
   }
   50% {
     opacity: 0.5;
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0;
   }
 }
