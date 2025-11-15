@@ -11,7 +11,7 @@ class PokeApiClient {
 
   constructor() {
     this.client = axios.create({
-      baseURL: 'https://pokeapi.co/api/v2',
+      baseURL: process.env.POKEMON_BASE_API,
       timeout: 10000,
       headers: {
         'Content-Type': 'application/json',
