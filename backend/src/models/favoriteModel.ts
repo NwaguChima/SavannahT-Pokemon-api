@@ -27,7 +27,6 @@ const favoriteSchema: Schema = new Schema(
 );
 
 // Index for faster queries
-favoriteSchema.index({ pokemonId: 1 });
 favoriteSchema.index({ pokemonName: 1 });
 
 const Favorite = mongoose.model<IFavorite>('Favorite', favoriteSchema);

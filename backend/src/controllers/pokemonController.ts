@@ -2,14 +2,13 @@ import { Request, Response, NextFunction } from 'express';
 import catchAsync from '../utils/catchAsync';
 import AppError from '../utils/appError';
 import pokeApiClient from '../utils/pokemonApiClient';
-import { PokemonDetails, ApiResponse } from '../types';
 
 /**
  * Get all Pokemon (first 150)
  */
 export const getAllPokemon = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
-    const limit = parseInt(req.query.limit as string) || 150;
+    const limit = parseInt(req.query.limit as string) || 10;
     const offset = parseInt(req.query.offset as string) || 0;
 
     const pokemonList = await pokeApiClient.getPokemonList(limit, offset);
