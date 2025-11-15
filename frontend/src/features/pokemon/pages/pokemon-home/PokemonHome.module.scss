@@ -1,0 +1,22 @@
+.page {
+  min-height: 100vh;
+  background-color: $bg-secondary;
+
+  &__content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: $spacing-xl $spacing-md;
+  }
+
+  &__search {
+    margin-bottom: $spacing-xl;
+    animation: slideUp $transition-normal;
+  }
+
+  &__filter {
+    margin-bottom: $spacing-xl;
+    animation: slideUp $transition-normal;
+    animation-delay: 0.1s;
+    animation-fill-mode: both;
+  }
+}

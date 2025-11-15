@@ -1,0 +1,68 @@
+@import '@/shared/styles/variables.scss';
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+  width: 100%;
+}
+
+.input__label {
+  font-size: $font-sm;
+  font-weight: $font-medium;
+  color: $text-primary;
+}
+
+.input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  width: 100%;
+  padding: $spacing-sm $spacing-md;
+  font-size: $font-md;
+  border: 2px solid $border-color;
+  border-radius: $radius-md;
+  background-color: $bg-primary;
+  color: $text-primary;
+  transition: all $transition-fast;
+
+  &:focus {
+    outline: none;
+    border-color: $secondary-color;
+    box-shadow: 0 0 0 3px rgba($secondary-color, 0.1);
+  }
+
+  &::placeholder {
+    color: $text-light;
+  }
+
+  &--error {
+    border-color: $accent-color;
+
+    &:focus {
+      border-color: $accent-color;
+      box-shadow: 0 0 0 3px rgba($accent-color, 0.1);
+    }
+  }
+
+  &--with-icon {
+    padding-left: $spacing-xxl;
+  }
+}
+
+.input__icon {
+  position: absolute;
+  left: $spacing-md;
+  display: flex;
+  align-items: center;
+  color: $text-light;
+  pointer-events: none;
+}
+
+.input__error {
+  font-size: $font-xs;
+  color: $accent-color;
+}

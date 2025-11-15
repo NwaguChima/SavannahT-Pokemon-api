@@ -1,0 +1,17 @@
+.search {
+  display: flex;
+  gap: $spacing-md;
+  align-items: flex-end;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+
+  @media (max-width: $breakpoint-sm) {
+    flex-direction: column;
+    align-items: stretch;
+
+    button {
+      width: 100%;
+    }
+  }
+}

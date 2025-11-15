@@ -1,0 +1,42 @@
+@use 'sass:color';
+
+.header {
+  background: linear-gradient(
+    135deg,
+    $secondary-color 0%,
+    color.adjust($secondary-color, $lightness: 15%)
+  );
+  color: white;
+  padding: $spacing-xl $spacing-md;
+  box-shadow: 0 4px 12px $shadow-medium;
+  position: sticky;
+  top: 0;
+  z-index: $z-index-header;
+  animation: slideUp $transition-normal;
+
+  &__container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  &__logo {
+    text-align: center;
+  }
+
+  &__title {
+    font-size: $font-xxl;
+    font-weight: $font-bold;
+    margin-bottom: $spacing-xs;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+
+    @media (min-width: $breakpoint-md) {
+      font-size: 3rem;
+    }
+  }
+
+  &__subtitle {
+    font-size: $font-md;
+    opacity: 0.9;
+    font-weight: $font-regular;
+  }
+}
