@@ -26,7 +26,7 @@ export const usePokemonList = () => {
       return totalFetched;
     },
     initialPageParam: 0,
-    staleTime: Infinity, // Prevent refetching when switching tabs
+    staleTime: Infinity,
   });
 
   // Flatten all pages into single array

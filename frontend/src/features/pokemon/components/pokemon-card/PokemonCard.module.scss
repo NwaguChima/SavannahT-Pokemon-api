@@ -4,12 +4,6 @@
   inherits: true;
 }
 
-@keyframes rotate {
-  to {
-    --angle: 1turn;
-  }
-}
-
 .card {
   position: relative;
   border: 3px solid $bg-card;
@@ -133,5 +127,11 @@
     color: white;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+  }
+}
+
+@keyframes rotate {
+  to {
+    --angle: 1turn;
   }
 }

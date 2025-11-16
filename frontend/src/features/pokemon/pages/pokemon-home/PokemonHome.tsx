@@ -25,6 +25,7 @@ const PokemonHomePage = () => {
     confirmClearAllFavorites,
     showConfirmModal,
     isClearingFavorites,
+    isTogglingFavorite,
   } = useFavorites();
 
   const handleToggleFavorite = (pokemon: Pokemon) => {
@@ -79,6 +80,7 @@ const PokemonHomePage = () => {
           isFavorite={favoriteIds.includes(selectedPokemon.id)}
           onToggleFavorite={handleToggleFavorite}
           onClose={handleCloseDetail}
+          isDisabled={isTogglingFavorite}
         />
       )}
 

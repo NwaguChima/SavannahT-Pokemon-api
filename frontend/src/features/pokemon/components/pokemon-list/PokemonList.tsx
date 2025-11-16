@@ -4,6 +4,7 @@ import styles from './PokemonList.module.scss';
 import { POKEMON_CONSTANTS } from '@shared/constants';
 import { type Pokemon } from '@/types';
 import { useInfiniteScroll, usePokemonList } from '../../hooks';
+import { getApiErrorMessage } from '@/shared/utils/get-api-error-message';
 
 interface PokemonListProps {
   favoriteIds: number[];
@@ -46,9 +47,14 @@ const PokemonList = ({
   }
 
   if (error) {
+    const message = getApiErrorMessage(
+      error,
+      'Failed to load Pokémon. Please try again.'
+    );
+
     return (
       <div className={styles.list__error}>
-        <p>Failed to load Pokémon. Please try again.</p>
+        <p>{message}</p>
       </div>
     );
   }

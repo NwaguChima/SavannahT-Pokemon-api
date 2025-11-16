@@ -12,6 +12,7 @@ import {
 import { TOAST_MESSAGES } from '@shared/constants';
 import { QUERY_KEYS, type Pokemon } from '@/types';
 import { getPokemonSprite } from '@/shared/utils/pokemon-helpers';
+import { getApiErrorMessage } from '@/shared/utils/get-api-error-message';
 
 export const useFavorites = () => {
   const dispatch = useAppDispatch();
@@ -32,7 +33,7 @@ export const useFavorites = () => {
     }
   }, [favoritesData, dispatch]);
 
-  // Add to favorites mutation
+  // Add to favorites mutation with optimistic update
   const addFavoriteMutation = useMutation({
     mutationFn: (pokemon: Pokemon) =>
       pokemonApi.addFavorite({
@@ -40,26 +41,72 @@ export const useFavorites = () => {
         pokemonName: pokemon.name,
         pokemonSprite: getPokemonSprite(pokemon),
       }),
-    onSuccess: (_, pokemon) => {
+    onMutate: async (pokemon) => {
+      await queryClient.cancelQueries({ queryKey: [QUERY_KEYS.FAVORITES] });
+
+      const previousFavorites = queryClient.getQueryData([
+        QUERY_KEYS.FAVORITES,
+      ]);
+
       dispatch(addFavoriteId(pokemon.id));
+
+      return { previousFavorites };
+    },
+    onSuccess: (_, pokemon) => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.FAVORITES] });
       toast.success(TOAST_MESSAGES.ADD_FAVORITE_SUCCESS);
     },
-    onError: () => {
-      toast.error(TOAST_MESSAGES.ADD_FAVORITE_ERROR);
+    onError: (error, pokemon, context) => {
+      if (context?.previousFavorites) {
+        queryClient.setQueryData(
+          [QUERY_KEYS.FAVORITES],
+          context.previousFavorites
+        );
+        dispatch(removeFavoriteId(pokemon.id));
+      }
+
+      const message = getApiErrorMessage(
+        error,
+        TOAST_MESSAGES.ADD_FAVORITE_ERROR
+      );
+
+      toast.error(message);
     },
   });
 
-  // Remove from favorites mutation
+  // Remove from favorites mutation with optimistic update
   const removeFavoriteMutation = useMutation({
     mutationFn: (pokemonId: number) => pokemonApi.removeFavorite(pokemonId),
-    onSuccess: (_, pokemonId) => {
+    onMutate: async (pokemonId) => {
+      await queryClient.cancelQueries({ queryKey: [QUERY_KEYS.FAVORITES] });
+
+      const previousFavorites = queryClient.getQueryData([
+        QUERY_KEYS.FAVORITES,
+      ]);
+
       dispatch(removeFavoriteId(pokemonId));
+
+      return { previousFavorites };
+    },
+    onSuccess: (_, pokemonId) => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.FAVORITES] });
       toast.success(TOAST_MESSAGES.REMOVE_FAVORITE_SUCCESS);
     },
-    onError: () => {
-      toast.error(TOAST_MESSAGES.REMOVE_FAVORITE_ERROR);
+    onError: (error, pokemonId, context) => {
+      if (context?.previousFavorites) {
+        queryClient.setQueryData(
+          [QUERY_KEYS.FAVORITES],
+          context.previousFavorites
+        );
+        dispatch(addFavoriteId(pokemonId));
+      }
+
+      const message = getApiErrorMessage(
+        error,
+        TOAST_MESSAGES.REMOVE_FAVORITE_ERROR
+      );
+
+      toast.error(message);
     },
   });
 
@@ -72,8 +119,9 @@ export const useFavorites = () => {
       toast.success(TOAST_MESSAGES.CLEAR_FAVORITES_SUCCESS);
       setShowConfirmModal(false);
     },
-    onError: () => {
-      toast.error('Failed to clear favorites');
+    onError: (error) => {
+      const message = getApiErrorMessage(error, 'Failed to clear favorites');
+      toast.error(message);
       setShowConfirmModal(false);
     },
   });
@@ -107,5 +155,7 @@ export const useFavorites = () => {
     isAddingFavorite: addFavoriteMutation.isPending,
     isRemovingFavorite: removeFavoriteMutation.isPending,
     isClearingFavorites: clearFavoritesMutation.isPending,
+    isTogglingFavorite:
+      addFavoriteMutation.isPending || removeFavoriteMutation.isPending,
   };
 };

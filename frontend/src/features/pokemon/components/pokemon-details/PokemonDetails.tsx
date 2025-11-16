@@ -19,6 +19,7 @@ interface PokemonDetailProps {
   onToggleFavorite: (pokemon: Pokemon) => void;
   onClose: () => void;
   isOpen: boolean;
+  isDisabled?: boolean;
 }
 
 const PokemonDetail = ({
@@ -27,6 +28,7 @@ const PokemonDetail = ({
   onToggleFavorite,
   onClose,
   isOpen,
+  isDisabled = false,
 }: PokemonDetailProps) => {
   const sprite = getPokemonSprite(pokemon);
   const { evolutions, isLoading: isLoadingEvolution } = usePokemonDetail(
@@ -115,6 +117,7 @@ const PokemonDetail = ({
             variant={isFavorite ? 'danger' : 'outline'}
             fullWidth
             onClick={() => onToggleFavorite(pokemon)}
+            disabled={isDisabled}
           >
             <StarIcon
               fill={isFavorite ? '#ffdc64' : '#f1f0f0'}
