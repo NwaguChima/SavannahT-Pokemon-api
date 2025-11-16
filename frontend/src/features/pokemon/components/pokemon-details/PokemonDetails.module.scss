@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 .detail {
   padding: $spacing-xl;
 
@@ -22,7 +24,7 @@
     background: linear-gradient(
       135deg,
       $bg-secondary 0%,
-      lighten($bg-secondary, 5%) 100%
+      color.adjust($bg-secondary, $lightness: 5%) 100%
     );
     border-radius: $radius-lg;
     display: flex;
@@ -97,7 +99,7 @@
     background: linear-gradient(
       135deg,
       $bg-secondary 0%,
-      lighten($bg-secondary, 5%) 100%
+      color.adjust($bg-secondary, $lightness: 5%) 100%
     );
     padding: $spacing-sm $spacing-lg;
     border-radius: $radius-lg;
