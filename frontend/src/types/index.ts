@@ -91,4 +91,5 @@ export const QUERY_KEYS = {
   POKEMON_DETAIL: 'pokemonDetail',
   FAVORITES: 'favorites',
   CHECK_FAVORITE: 'checkFavorite',
+  EVOLUTION_SPRITES: 'evolutionSprites',
 } as const;
