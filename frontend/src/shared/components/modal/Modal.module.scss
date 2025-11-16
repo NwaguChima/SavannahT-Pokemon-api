@@ -44,24 +44,6 @@
     border-radius: $radius-xl;
     max-height: 90vh;
     overflow-y: auto;
-
-    // Custom scrollbar for modal content
-    &::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    &::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: $border-color;
-      border-radius: $radius-full;
-
-      &:hover {
-        background: $text-light;
-      }
-    }
   }
 
   &__close {

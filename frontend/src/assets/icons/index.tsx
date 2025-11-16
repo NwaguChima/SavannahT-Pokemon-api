@@ -126,3 +126,87 @@ export const ArrowRightIcon: React.FC<IconProps> = ({
     </g>
   </svg>
 );
+
+export const HeightIcon: React.FC<IconProps> = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={props.width ?? '24'}
+    height={props.height ?? '24'}
+    viewBox={props.viewBox ?? '0 0 24 24'}
+    fill="none"
+    stroke="currentColor"
+    className={props.className}
+    style={props.style}
+    onClick={props.onClick}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"
+    />
+  </svg>
+);
+
+export const WeightIcon: React.FC<IconProps> = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={props.width ?? '24'}
+    height={props.height ?? '24'}
+    viewBox={props.viewBox ?? '0 0 24 24'}
+    fill="none"
+    stroke="currentColor"
+    className={props.className}
+    style={props.style}
+    onClick={props.onClick}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"
+    />
+  </svg>
+);
+
+export const AbilitiesIcon: React.FC<IconProps> = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={props.width ?? '24'}
+    height={props.height ?? '24'}
+    viewBox={props.viewBox ?? '0 0 24 24'}
+    fill="none"
+    stroke="currentColor"
+    className={props.className}
+    style={props.style}
+    onClick={props.onClick}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M13 10V3L4 14h7v7l9-11h-7z"
+    />
+  </svg>
+);
+
+export const EvolutionIcon: React.FC<IconProps> = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={props.width ?? '24'}
+    height={props.height ?? '24'}
+    viewBox={props.viewBox ?? '0 0 24 24'}
+    fill="none"
+    stroke="currentColor"
+    className={props.className}
+    style={props.style}
+    onClick={props.onClick}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+    />
+  </svg>
+);
