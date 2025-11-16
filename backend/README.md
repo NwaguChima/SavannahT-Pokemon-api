@@ -263,6 +263,10 @@ ISC
 
 Chima Nwagu
 
+## Live URL
+
+https://savannaht-pokemon-api.onrender.com/api/v1
+
 ## Acknowledgments
 
 - PokéAPI (https://pokeapi.co/) for the Pokémon data

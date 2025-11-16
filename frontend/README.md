@@ -298,6 +298,10 @@ transition: all $transition-fast;
 - Check if variables are properly imported
 - Ensure module.scss extension is used
 
+## Live URL
+
+https://savannah-pokemon.vercel.app/
+
 ## 🎉 Acknowledgments
 
 - PokéAPI for providing the Pokémon data
