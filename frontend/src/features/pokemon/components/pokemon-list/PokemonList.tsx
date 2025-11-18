@@ -5,6 +5,7 @@ import { POKEMON_CONSTANTS } from '@shared/constants';
 import { type Pokemon } from '@/types';
 import { useInfiniteScroll, usePokemonList } from '../../hooks';
 import { getApiErrorMessage } from '@/shared/utils/get-api-error-message';
+import { useMemo } from 'react';
 
 interface PokemonListProps {
   favoriteIds: number[];
@@ -29,9 +30,11 @@ const PokemonList = ({
   } = usePokemonList();
 
   // Filter by favorites if needed
-  const displayedPokemon = showOnlyFavorites
-    ? allPokemon.filter((pokemon) => favoriteIds.includes(pokemon.id))
-    : allPokemon;
+  const displayedPokemon = useMemo(() => {
+    return showOnlyFavorites
+      ? allPokemon.filter((pokemon) => favoriteIds.includes(pokemon.id))
+      : allPokemon;
+  }, [showOnlyFavorites, allPokemon, favoriteIds]);
 
   // Only enable infinite scroll when showing all Pokemon (not favorites)
   const shouldEnableScroll = !showOnlyFavorites && hasNextPage;

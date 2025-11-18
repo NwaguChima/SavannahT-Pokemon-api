@@ -21,6 +21,9 @@ const SearchBar = ({ onPokemonFound }: SearchBarProps) => {
         value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
         icon={<SearchIcon />}
+        aria-label="Search Pokemon"
+        aria-autocomplete="list"
+        aria-controls="search-results"
       />
       <Button
         type="submit"

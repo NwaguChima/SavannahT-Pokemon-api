@@ -18,7 +18,7 @@ export type BuildableUrl<T> = {
 const isNil = (val: unknown): val is null | undefined =>
   val === null || val === undefined;
 
-function mapValues<T extends Record<string, any>, R>(
+function mapValues<T extends Record<string, unknown>, R>(
   obj: T,
   fn: (value: T[keyof T], key: keyof T) => R
 ) {
@@ -29,7 +29,7 @@ function mapValues<T extends Record<string, any>, R>(
   return result;
 }
 
-function generatePath(path: string, params: Record<string, any>) {
+function generatePath(path: string, params: Record<string, unknown>) {
   return path.replace(/:(\w+)/g, (_, key) => {
     const value = params[key];
     if (value === undefined) {

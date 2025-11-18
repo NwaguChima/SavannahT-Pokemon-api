@@ -1,0 +1,25 @@
+.errorBoundary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  padding: $spacing-lg;
+
+  &__content {
+    text-align: center;
+    max-width: 500px;
+  }
+
+  &__title {
+    font-size: $font-lg;
+    font-weight: $font-semibold;
+    margin-bottom: $spacing-md;
+    color: $accent-color;
+  }
+
+  &__message {
+    font-size: $font-sm;
+    color: $text-light;
+    margin-bottom: $spacing-lg;
+  }
+}

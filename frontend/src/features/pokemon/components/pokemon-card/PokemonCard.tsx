@@ -27,8 +27,21 @@ const PokemonCard = ({
     onToggleFavorite(pokemon);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      onClick(pokemon);
+    }
+  };
+
   return (
-    <div className={styles.card} onClick={() => onClick(pokemon)}>
+    <div
+      className={styles.card}
+      onClick={() => onClick(pokemon)}
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
+      aria-label="Pokemon Player Card"
+    >
       <button
         className={styles.card__favorite}
         onClick={handleFavoriteClick}
@@ -61,6 +74,7 @@ const PokemonCard = ({
               key={type.slot}
               className={styles['card__type-badge']}
               style={{ backgroundColor: getTypeColor(type.type.name) }}
+              role="listitem"
             >
               {type.type.name}
             </span>

@@ -10,6 +10,7 @@ import {
   validateAddFavorite,
   validatePokemonId,
 } from '../middlewares/validation';
+import { validatePokemonExists } from '../controllers/pokemonController';
 
 const router = express.Router();
 
@@ -20,7 +21,10 @@ router.get('/check/:pokemonId', validatePokemonId, checkFavorite);
 router.delete('/clear', clearAllFavorites);
 
 // CRUD routes
-router.route('/').get(getAllFavorites).post(validateAddFavorite, addFavorite);
+router
+  .route('/')
+  .get(getAllFavorites)
+  .post(validateAddFavorite, validatePokemonExists, addFavorite);
 
 router.delete('/:pokemonId', validatePokemonId, removeFavorite);
 

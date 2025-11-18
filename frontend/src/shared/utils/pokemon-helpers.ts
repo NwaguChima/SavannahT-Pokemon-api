@@ -1,4 +1,5 @@
 import type { Pokemon } from '@/types';
+import { POKEMON_CONSTANTS } from '../constants';
 
 // Note: in a standard app each helper will have it's own file and will be put closer to its feature
 
@@ -72,7 +73,7 @@ export const formatWeight = (weight: number): string => {
 /**
  * Debounce function
  */
-export const debounce = <T extends (...args: any[]) => any>(
+export const debounce = <T extends (...args: unknown[]) => any>(
   func: T,
   delay: number
 ): ((...args: Parameters<T>) => void) => {
@@ -93,7 +94,9 @@ export const isValidPokemonIdentifier = (value: string): boolean => {
 
   if (!isNaN(Number(value))) {
     const id = Number(value);
-    return id >= 1 && id <= 150;
+    return (
+      id >= POKEMON_CONSTANTS.MIN_POKEMON && id <= POKEMON_CONSTANTS.MAX_POKEMON
+    );
   }
 
   return /^[a-zA-Z0-9-]+$/.test(value);
