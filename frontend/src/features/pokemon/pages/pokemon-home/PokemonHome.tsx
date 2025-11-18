@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { lazy, Suspense, useCallback, useMemo, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@lib/store/hooks';
 import { setSelectedPokemon, setFilter } from '@lib/store/slices/pokemonSlice';
 import ConfirmationModal from '@/shared/components/confirmation-modal/ConfirmationModal';
@@ -7,9 +7,14 @@ import Header from '../../components/header/Header';
 import SearchBar from '../../components/search-bar/SearchBar';
 import FilterBar from '../../components/filter-bar/FilterBar';
 import PokemonList from '../../components/pokemon-list/PokemonList';
-import PokemonDetail from '../../components/pokemon-details/PokemonDetails';
 import { useFavorites } from '../../hooks';
 import styles from './PokemonHome.module.scss';
+import Loader from '@/shared/components/loader/Loader';
+
+// This will not add any impact, I only added because of the requirement, but this has no effect on the application, or it's performance
+const PokemonDetail = lazy(
+  () => import('../../components/pokemon-details/PokemonDetails')
+);
 
 const PokemonHomePage = () => {
   const dispatch = useAppDispatch();
@@ -88,14 +93,22 @@ const PokemonHomePage = () => {
       </main>
 
       {selectedPokemon && (
-        <PokemonDetail
-          isOpen={showDetail}
-          pokemon={selectedPokemon}
-          isFavorite={isSelectedFavorite}
-          onToggleFavorite={handleToggleFavorite}
-          onClose={handleCloseDetail}
-          isDisabled={isTogglingFavorite}
-        />
+        <Suspense
+          fallback={
+            <div>
+              <Loader size="sm" variant="pokeball" />
+            </div>
+          }
+        >
+          <PokemonDetail
+            isOpen={showDetail}
+            pokemon={selectedPokemon}
+            isFavorite={isSelectedFavorite}
+            onToggleFavorite={handleToggleFavorite}
+            onClose={handleCloseDetail}
+            isDisabled={isTogglingFavorite}
+          />
+        </Suspense>
       )}
 
       <ConfirmationModal
