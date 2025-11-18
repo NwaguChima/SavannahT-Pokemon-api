@@ -26,7 +26,8 @@ export const usePokemonList = () => {
       return totalFetched;
     },
     initialPageParam: 0,
-    staleTime: Infinity,
+    staleTime: POKEMON_CONSTANTS.CACHE_STALE_TIME,
+    gcTime: POKEMON_CONSTANTS.CACHE_STALE_TIME * 2,
   });
 
   // Flatten all pages into single array

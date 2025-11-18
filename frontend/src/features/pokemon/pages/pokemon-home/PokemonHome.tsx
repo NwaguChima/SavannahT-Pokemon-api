@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@lib/store/hooks';
 import { setSelectedPokemon, setFilter } from '@lib/store/slices/pokemonSlice';
 import ConfirmationModal from '@/shared/components/confirmation-modal/ConfirmationModal';
@@ -28,24 +28,38 @@ const PokemonHomePage = () => {
     isTogglingFavorite,
   } = useFavorites();
 
-  const handleToggleFavorite = (pokemon: Pokemon) => {
-    const isFavorite = favoriteIds.includes(pokemon.id);
-    toggleFavorite(pokemon, isFavorite);
-  };
+  const handleToggleFavorite = useCallback(
+    (pokemon: Pokemon) => {
+      const isFavorite = favoriteIds.includes(pokemon.id);
+      toggleFavorite(pokemon, isFavorite);
+    },
+    [favoriteIds, toggleFavorite]
+  );
 
-  const handleSelectPokemon = (pokemon: Pokemon) => {
-    dispatch(setSelectedPokemon(pokemon));
-    setShowDetail(true);
-  };
+  const handleSelectPokemon = useCallback(
+    (pokemon: Pokemon) => {
+      dispatch(setSelectedPokemon(pokemon));
+      setShowDetail(true);
+    },
+    [dispatch]
+  );
 
-  const handleCloseDetail = () => {
+  const handleCloseDetail = useCallback(() => {
     setShowDetail(false);
     dispatch(setSelectedPokemon(null));
-  };
+  }, [dispatch]);
 
-  const handleFilterChange = (newFilter: typeof filter) => {
-    dispatch(setFilter(newFilter));
-  };
+  const handleFilterChange = useCallback(
+    (newFilter: typeof filter) => {
+      dispatch(setFilter(newFilter));
+    },
+    [dispatch]
+  );
+
+  const isSelectedFavorite = useMemo(
+    () => (selectedPokemon ? favoriteIds.includes(selectedPokemon.id) : false),
+    [selectedPokemon, favoriteIds]
+  );
 
   return (
     <div className={styles.page}>
@@ -77,7 +91,7 @@ const PokemonHomePage = () => {
         <PokemonDetail
           isOpen={showDetail}
           pokemon={selectedPokemon}
-          isFavorite={favoriteIds.includes(selectedPokemon.id)}
+          isFavorite={isSelectedFavorite}
           onToggleFavorite={handleToggleFavorite}
           onClose={handleCloseDetail}
           isDisabled={isTogglingFavorite}

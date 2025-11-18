@@ -205,42 +205,45 @@ const EvolutionChain = ({
   isLoadingEvolution: boolean;
   isLoadingSprites: boolean;
 }) => {
-  if (isLoadingEvolution) return <Loader size="sm" variant="pulse" />;
-
-  if (!evolutions.length) return null;
-
   return (
     <div className={styles.detail__section}>
       <h3 className={styles.detail__title}>
         <EvolutionIcon className={styles.detail__titleIcon} />
         Evolution Chain
       </h3>
+
       <div className={styles.detail__evolutionsWrapper}>
-        <div className={styles.detail__evolutions}>
-          {evolutions.map((evo, index) => (
-            <React.Fragment key={index}>
-              <div className={styles.detail__evolution}>
-                <div className={styles.detail__evolutionCircle}>
-                  {isLoadingSprites ? (
-                    <div className={styles.detail__evolutionPlaceholder}>
-                      ...
-                    </div>
-                  ) : evolutionSprites[evo] ? (
-                    <img src={evolutionSprites[evo]} alt={evo} />
-                  ) : (
-                    <div className={styles.detail__evolutionPlaceholder}>?</div>
-                  )}
+        {isLoadingEvolution ? (
+          <Loader size="sm" variant="pulse" />
+        ) : (
+          <div className={styles.detail__evolutions}>
+            {evolutions.map((evo, index) => (
+              <React.Fragment key={index}>
+                <div className={styles.detail__evolution}>
+                  <div className={styles.detail__evolutionCircle}>
+                    {isLoadingSprites ? (
+                      <div className={styles.detail__evolutionPlaceholder}>
+                        ...
+                      </div>
+                    ) : evolutionSprites[evo] ? (
+                      <img src={evolutionSprites[evo]} alt={evo} />
+                    ) : (
+                      <div className={styles.detail__evolutionPlaceholder}>
+                        ?
+                      </div>
+                    )}
+                  </div>
+                  <p className={styles.detail__evolutionName}>
+                    {formatPokemonName(evo)}
+                  </p>
                 </div>
-                <p className={styles.detail__evolutionName}>
-                  {formatPokemonName(evo)}
-                </p>
-              </div>
-              {index < evolutions.length - 1 && (
-                <div className={styles.detail__arrow}>→</div>
-              )}
-            </React.Fragment>
-          ))}
-        </div>
+                {index < evolutions.length - 1 && (
+                  <div className={styles.detail__arrow}>→</div>
+                )}
+              </React.Fragment>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

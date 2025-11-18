@@ -3,6 +3,7 @@ import { QUERY_KEYS } from '@/types';
 import axios from 'axios';
 import { getApiErrorMessage } from '@/shared/utils/get-api-error-message';
 import { toast } from 'sonner';
+import { POKEMON_CONSTANTS } from '@/shared/constants';
 
 interface EvolutionSprites {
   [key: string]: string;
@@ -41,7 +42,7 @@ export const useEvolutionSprites = (evolutions: string[]) => {
     queryKey: [QUERY_KEYS.EVOLUTION_SPRITES, evolutions],
     queryFn: () => fetchEvolutionSprites(evolutions),
     enabled: evolutions.length > 0,
-    staleTime: 1000 * 60 * 60,
+    staleTime: POKEMON_CONSTANTS.EVOLUTION_CACHE_TIME,
   });
 
   return {

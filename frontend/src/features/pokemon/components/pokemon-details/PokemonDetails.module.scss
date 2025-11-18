@@ -264,6 +264,10 @@
     border: 1px solid #e9d5ff;
     border-radius: $radius-lg;
     padding: $spacing-md;
+    height: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   &__evolutions {
@@ -271,6 +275,7 @@
     align-items: center;
     justify-content: space-between;
     gap: $spacing-md;
+    width: 100%;
 
     @media (max-width: $breakpoint-sm) {
       flex-wrap: wrap;
